@@ -53,7 +53,7 @@
 //     }
 // }
 
-
+// optimal solution
 class Solution {
     public int tupleSameProduct(int[] nums) {
         int n = nums.length;
