@@ -94,6 +94,7 @@ class Solution {
             if(ball_color.containsKey(x))
             {
                 prev_color = ball_color.get(x);
+
                 if(color_count.containsKey(prev_color))
                 {
                     if(color_count.get(prev_color) == 1)
@@ -101,7 +102,6 @@ class Solution {
                     else
                         color_count.put(prev_color, color_count.get(prev_color) - 1);
                 }
-
 
             }
             
