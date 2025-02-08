@@ -26,6 +26,53 @@
 
 
 
+// class NumberContainers {
+
+//     Map<Integer, Integer> numbermap;
+//     Map<Integer, TreeSet<Integer>> indexmap;
+//     public NumberContainers() {
+//         numbermap = new HashMap<>();
+//         indexmap = new HashMap<>();
+//     }
+    
+//     public void change(int index, int number) {
+//         if(!numbermap.containsKey(index))
+//         {
+//             numbermap.put(index, number);
+//         }
+//         else
+//         {
+//             int prev_num = numbermap.get(index);
+//             numbermap.put(index, number);
+
+//             indexmap.get(prev_num).remove(index);
+//         }
+
+//         if(indexmap.containsKey(number))
+//         {
+//             indexmap.get(number).add(index);
+//         }
+//         else
+//         {
+//             indexmap.put(number, new TreeSet<>());
+//             indexmap.get(number).add(index);
+//         }
+
+//     }
+    
+//     public int find(int number) {
+       
+//         if(indexmap.containsKey(number) && !indexmap.get(number).isEmpty())
+//         {
+//             return  indexmap.get(number).first();
+//         }
+        
+//         return -1;
+        
+//     }
+// }
+
+
 class NumberContainers {
 
     Map<Integer, Integer> numbermap;
@@ -36,27 +83,20 @@ class NumberContainers {
     }
     
     public void change(int index, int number) {
-        if(!numbermap.containsKey(index))
-        {
-            numbermap.put(index, number);
-        }
-        else
+        if(numbermap.containsKey(index))
         {
             int prev_num = numbermap.get(index);
-            numbermap.put(index, number);
-
             indexmap.get(prev_num).remove(index);
         }
+        
+        numbermap.put(index, number);
 
-        if(indexmap.containsKey(number))
-        {
-            indexmap.get(number).add(index);
-        }
-        else
+        if(!indexmap.containsKey(number))
         {
             indexmap.put(number, new TreeSet<>());
-            indexmap.get(number).add(index);
         }
+
+        indexmap.get(number).add(index);
 
     }
     
