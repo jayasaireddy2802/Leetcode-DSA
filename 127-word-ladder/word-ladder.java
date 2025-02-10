@@ -34,9 +34,9 @@ class Solution {
 
             for(int i = 0; i < strLength; i++)
             {
+                char[] arr = str.toCharArray();
                 for(char ch = 'a'; ch <= 'z'; ch++)
                 {
-                    char[] arr = str.toCharArray();
                     arr[i] = ch;
                     String newStr = new String(arr);
 
