@@ -112,7 +112,7 @@ class Solution {
         return map;
     }
 
-    public void dfs(String beginWord, String endWord, List<String> list, Map<String, Integer> map, List<List<String>> ans, Set<String> set)
+    public void dfs(String beginWord, String endWord, List<String> list, Map<String, Integer> map, List<List<String>> ans)
     {
         int lvl = map.getOrDefault(endWord, -1);
 
@@ -136,7 +136,7 @@ class Solution {
                 if(map.containsKey(newWord) && map.getOrDefault(newWord, -1) == lvl - 1)
                 {
                     list.add(0, newWord);
-                    dfs(beginWord, newWord, list, map, ans, set);
+                    dfs(beginWord, newWord, list, map, ans);
                     list.remove(0);
                 }
             }
@@ -150,16 +150,9 @@ class Solution {
         List<String> list = new ArrayList<>();
             
         map = wordLadder1(beginWord, endWord, wordList);
-
-        Set<String> set = new HashSet<>();
-
-        for(String str : wordList)
-            set.add(str);
-
         list.add(endWord);
-        dfs(beginWord, endWord, list, map, ans, set);
+        dfs(beginWord, endWord, list, map, ans);
         return ans;
-
     }
 }
 
