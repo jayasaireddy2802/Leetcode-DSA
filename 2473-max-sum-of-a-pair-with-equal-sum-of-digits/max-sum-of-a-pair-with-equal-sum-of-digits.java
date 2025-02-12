@@ -1,32 +1,32 @@
-// // class Solution {
+// class Solution {
 
-// //     public int digitsSum(int num)
-// //     {
-// //         int sum = 0;
-// //         while(num > 0)
-// //         {
-// //             sum = sum + (num % 10);
-// //             num = num / 10;
-// //         }
+//     public int digitsSum(int num)
+//     {
+//         int sum = 0;
+//         while(num > 0)
+//         {
+//             sum = sum + (num % 10);
+//             num = num / 10;
+//         }
 
-// //         return sum;
-// //     }
+//         return sum;
+//     }
 
-// //     public int maximumSum(int[] nums) {
-// //         int n = nums.length;
-// //         int ans = -1;
-// //         for(int i = 0;i < n; i++)
-// //         {
-// //             for(int j = i + 1; j < n; j++)
-// //             {
-// //                 if(digitsSum(nums[i]) == digitsSum(nums[j]))
-// //                     ans = Math.max(ans, nums[i] + nums[j]);
-// //             }
-// //         }
+//     public int maximumSum(int[] nums) {
+//         int n = nums.length;
+//         int ans = -1;
+//         for(int i = 0;i < n; i++)
+//         {
+//             for(int j = i + 1; j < n; j++)
+//             {
+//                 if(digitsSum(nums[i]) == digitsSum(nums[j]))
+//                     ans = Math.max(ans, nums[i] + nums[j]);
+//             }
+//         }
 
-// //         return ans;
-// //     }
-// // }
+//         return ans;
+//     }
+// }
 
 
 // class Solution {
