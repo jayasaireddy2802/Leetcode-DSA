@@ -1,13 +1,11 @@
 class Solution {
     public int minOperations(int[] nums, int k) {
         PriorityQueue<Long> num = new PriorityQueue<>();
-        List<Long> res = new ArrayList<>();
+        
         int ct = 0;
         for(int x : nums)
         {
-            if(x >= k)
-                res.add((long)x);
-            else
+            if(x < k)
                 num.add((long)x);
         }
         while(num.size() >= 2)
