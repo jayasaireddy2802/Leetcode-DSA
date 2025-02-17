@@ -34,6 +34,8 @@ class Solution {
             long dis = arr[0];
             int node = (int)arr[1];
 
+            if(dis > dist[node])
+                 continue ;
             for(int[] adjNodes : adj.get(node))
             {
                 int edgeWeight = adjNodes[1];
