@@ -1,36 +1,86 @@
+// class Solution {
+//     public int[] pivotArray(int[] nums, int pivot) {
+//         List<Integer> list1 = new ArrayList<>();
+//         List<Integer> list2 = new ArrayList<>();
+//         List<Integer> list3 = new ArrayList<>();
+//         int n = nums.length;
+//         int[] ans = new int[n];
+
+//         for(int num : nums)
+//         {
+//             if(num == pivot)
+//                 list2.add(num);
+//             else if(num < pivot)
+//                 list1.add(num);
+//             else
+//                 list3.add(num);
+//         }
+
+//         int i = 0;
+//         for(int x : list1)
+//         {
+//             ans[i] = x;
+//             i++;
+//         }
+//         for(int x : list2)
+//         {
+//             ans[i] = x;
+//             i++;
+//         }
+//         for(int x : list3)
+//         {
+//             ans[i] = x;
+//             i++;
+//         }
+
+//         return ans;
+//     }
+// }
+
 class Solution {
     public int[] pivotArray(int[] nums, int pivot) {
-        List<Integer> list1 = new ArrayList<>();
-        List<Integer> list2 = new ArrayList<>();
-        List<Integer> list3 = new ArrayList<>();
         int n = nums.length;
         int[] ans = new int[n];
+        int ct = 0;
+        int idx = 0;
+
+        for(int i = 0; i < n; i++)
+        {
+            if(nums[i] == pivot)
+            {
+                ct++;
+            }
+        }
 
         for(int num : nums)
         {
-            if(num == pivot)
-                list2.add(num);
-            else if(num < pivot)
-                list1.add(num);
-            else
-                list3.add(num);
+            if(num < pivot)
+                idx++;
+        }
+
+        while(ct > 0)
+        {
+            ans[idx] = pivot;
+            idx++;
+            ct--;
         }
 
         int i = 0;
-        for(int x : list1)
+        int j = idx;
+
+        for(int num : nums)
         {
-            ans[i] = x;
-            i++;
-        }
-        for(int x : list2)
-        {
-            ans[i] = x;
-            i++;
-        }
-        for(int x : list3)
-        {
-            ans[i] = x;
-            i++;
+            if(num < pivot)
+            {
+                ans[i] = num;
+                i++;
+            }
+            else if(num > pivot)
+            {
+                ans[j] = num;
+                j++;
+            }
+            
         }
 
         return ans;
