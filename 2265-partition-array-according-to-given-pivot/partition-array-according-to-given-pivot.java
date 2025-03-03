@@ -37,50 +37,87 @@
 //     }
 // }
 
+
+
+// class Solution {
+//     public int[] pivotArray(int[] nums, int pivot) {
+//         int n = nums.length;
+//         int[] ans = new int[n];
+//         int ct = 0;
+//         int idx = 0;
+
+//         for(int i = 0; i < n; i++)
+//         {
+//             if(nums[i] == pivot)
+//             {
+//                 ct++;
+//             }
+//         }
+
+//         for(int num : nums)
+//         {
+//             if(num < pivot)
+//                 idx++;
+//         }
+
+//         while(ct > 0)
+//         {
+//             ans[idx] = pivot;
+//             idx++;
+//             ct--;
+//         }
+
+//         int i = 0;
+//         int j = idx;
+
+//         for(int num : nums)
+//         {
+//             if(num < pivot)
+//             {
+//                 ans[i] = num;
+//                 i++;
+//             }
+//             else if(num > pivot)
+//             {
+//                 ans[j] = num;
+//                 j++;
+//             }
+            
+//         }
+
+//         return ans;
+//     }
+// }
+
+
 class Solution {
     public int[] pivotArray(int[] nums, int pivot) {
         int n = nums.length;
         int[] ans = new int[n];
-        int ct = 0;
-        int idx = 0;
-
-        for(int i = 0; i < n; i++)
-        {
-            if(nums[i] == pivot)
-            {
-                ct++;
-            }
-        }
-
-        for(int num : nums)
-        {
-            if(num < pivot)
-                idx++;
-        }
-
-        while(ct > 0)
-        {
-            ans[idx] = pivot;
-            idx++;
-            ct--;
-        }
-
         int i = 0;
-        int j = idx;
+        int j = n-1, k=0, l=n-1;
 
-        for(int num : nums)
+        while(i < n && j >= 0)
         {
-            if(num < pivot)
-            {
-                ans[i] = num;
-                i++;
+            if(nums[i] < pivot){
+                ans[k] = nums[i];
+                k++;
             }
-            else if(num > pivot)
+            if(nums[j] > pivot)
             {
-                ans[j] = num;
-                j++;
+                ans[l] = nums[j];
+                l--;
             }
-            
+            i++;
+            j--;
+        }
+
+       
+
+        while((l-k) >= 0)
+        {
+            ans[k] = pivot;
+            k++;
         }
 
         return ans;
