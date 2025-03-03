@@ -59,13 +59,18 @@ class DisjointSet
         int parent_v = findParent(v);
         if(parent_u == parent_v)
             return ;
-        if(rank[parent_u] >= rank[parent_v])
+        if(rank[parent_u] > rank[parent_v])
         {
             parent[parent_v] = parent_u;
         }
-        else
+        else if(rank[parent_u] < rank[parent_v])
         {
             parent[parent_u] = parent_v;
+        }
+        else
+        {
+            parent[parent_v] = parent_u;
+            rank[parent_v]++;
         }
     }
 }
