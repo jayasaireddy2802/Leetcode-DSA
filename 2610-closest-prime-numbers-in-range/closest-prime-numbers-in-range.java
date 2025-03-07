@@ -121,7 +121,8 @@ class Solution {
                 res = diff;
                 ans[0] = nums.get(i - 1);
                 ans[1] = nums.get(i);
-            
+                if(diff <= 2)
+                    return ans;
             }
         }
 
