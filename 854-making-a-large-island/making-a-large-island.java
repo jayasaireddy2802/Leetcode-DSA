@@ -368,13 +368,12 @@ class Solution {
             }
         }
 
-        if(hasOne == false)
-            return 1;
+        // if(hasOne == false)
+        //     return 1;
 
         
         for(int i = 0; i < n * n; i++)
         {
-            if(grid[i/n][i%n] == 1)
             maxSize = Math.max(maxSize, ds.size[ds.findParent(i)]);
         }
 
