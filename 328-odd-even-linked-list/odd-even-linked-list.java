@@ -45,7 +45,7 @@
 // }
 
 
-
+// space O(1)
 class Solution {
     public ListNode oddEvenList(ListNode head) {
 
