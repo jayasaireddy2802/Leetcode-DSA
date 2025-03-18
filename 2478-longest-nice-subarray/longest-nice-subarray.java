@@ -71,3 +71,41 @@ class Solution {
         return maxLength;
     }
 }
+
+
+// class Solution {
+
+//     public boolean isPossible(int i, int j, int[] nums)
+//     {
+//         int val = nums[i];
+//         for(int x = i+1; x <= j; x++)
+//         {
+//             if((val & nums[x]) != 0)
+//                 return false;
+//             else
+//             {
+//                 val = val | nums[x];
+//             }
+//         }
+
+//         return true;
+//     }
+
+//     public int longestNiceSubarray(int[] nums) {
+        
+//         int len = nums.length;
+//         int maxLength = 0;
+//         for(int i = 0; i < len; i++)
+//         {
+//             for(int j = i; j < len; j++)
+//             {
+//                 if(isPossible(i, j, nums))
+//                 {
+//                     maxLength = Math.max(maxLength, (j - i + 1));
+//                 }
+//             }
+//         }
+
+//         return maxLength;
+//     }
+// }
