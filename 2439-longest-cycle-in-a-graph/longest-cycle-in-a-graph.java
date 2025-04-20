@@ -5,13 +5,12 @@ class Solution {
     {
         visited[i] = true;
         pathVisited[i] = true;
-        
+        count[i] = x;
 
         for(int neighbour : adj.get(i))
         {
             if(!visited[neighbour])
             {
-                count[neighbour] = x + 1;
                 dfs(neighbour, pathVisited, visited, count, x+1, adj);
             }
             else if(pathVisited[neighbour])
