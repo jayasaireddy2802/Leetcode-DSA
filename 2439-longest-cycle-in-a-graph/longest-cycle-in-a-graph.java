@@ -21,6 +21,7 @@ class Solution {
         }
 
         pathVisited[i] = false;
+        count[i]--;
 
     }
 
@@ -44,7 +45,7 @@ class Solution {
         {
             if(!visited[i])
             {
-                count = new int[v];
+                
                 dfs(i, pathVisited, visited, count, 0, adj);
             }
         }
