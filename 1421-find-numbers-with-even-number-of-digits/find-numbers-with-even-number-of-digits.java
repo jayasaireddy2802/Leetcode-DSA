@@ -7,7 +7,7 @@ class Solution {
             cnt++;
             num /= 10;
         }
-        return (cnt % 2) == 0;
+        return (cnt & 1) == 0;
     }
     public int findNumbers(int[] nums) {
         int ct = 0;
