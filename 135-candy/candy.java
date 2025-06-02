@@ -26,7 +26,7 @@ class Solution {
         }
 
         for(int i = 0; i < len; i++)
-            ans = ans + Math.max(leftToRight[i], rightToLeft[i]);
+            ans += Math.max(leftToRight[i], rightToLeft[i]);
 
         return ans;
     }
