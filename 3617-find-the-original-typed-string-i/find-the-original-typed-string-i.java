@@ -22,10 +22,11 @@ class Solution {
 
         for(int i = 1; i < len; i++)
         {   
-            if(ch == word.charAt(i))
+            char c = word.charAt(i);
+            if(ch == c)
                 ct++;
             else
-                ch = word.charAt(i);
+                ch = c;
         }
 
         return ct;
