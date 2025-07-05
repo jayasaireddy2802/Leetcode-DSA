@@ -17,6 +17,27 @@
 // }
 
 
+// class Solution {
+//     public int findLucky(int[] arr) {
+//         int[] freq = new int[501];
+//         int ans = -1;
+
+//         for(int num : arr)
+//         {
+//             freq[num]++;
+//         }
+
+//         for(int i = 1; i < 501; i++)
+//         {
+//             if(i == freq[i])
+//                 ans = i;
+//         }
+        
+//         return ans;
+//     }
+// }
+
+
 class Solution {
     public int findLucky(int[] arr) {
         int[] freq = new int[501];
@@ -27,10 +48,10 @@ class Solution {
             freq[num]++;
         }
 
-        for(int i = 1; i < 501; i++)
+        for(int i = 500; i > 0; i--)
         {
             if(i == freq[i])
-                ans = i;
+                return i;
         }
         
         return ans;
