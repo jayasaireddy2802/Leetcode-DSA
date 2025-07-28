@@ -88,7 +88,7 @@ class Solution {
         for(int num : nums)
             maxi = maxi | num;
 
-        int[][] dp = new int[nums.length][1000000];
+        int[][] dp = new int[nums.length][200000];
         for(int[] arr : dp)
             Arrays.fill(arr, -1);
         return generateSubsequence(0, nums, 0, maxi, dp);
