@@ -34,9 +34,37 @@
 
 
 
+// class Solution {
+
+//     public int generateSubsequence(int idx, int[] nums, int val, int maxi)
+//     {
+//         if(idx >= nums.length)
+//         {
+//             if(val == maxi)
+//                 return 1;
+//             else
+//                 return 0;
+//         }
+
+//         int l = generateSubsequence(idx + 1, nums, val | nums[idx], maxi);
+//         int r = generateSubsequence(idx + 1, nums, val , maxi);
+
+//         return l + r;
+//     }
+
+//     public int countMaxOrSubsets(int[] nums) {
+//         int maxi = 0;
+//         for(int num : nums)
+//             maxi = maxi | num;
+
+//         return generateSubsequence(0, nums, 0, maxi);
+
+//     }
+// }
+
 class Solution {
 
-    public int generateSubsequence(int idx, int[] nums, int val, int maxi)
+    public int generateSubsequence(int idx, int[] nums, int val, int maxi, int[][] dp)
     {
         if(idx >= nums.length)
         {
@@ -46,10 +74,13 @@ class Solution {
                 return 0;
         }
 
-        int l = generateSubsequence(idx + 1, nums, val | nums[idx], maxi);
-        int r = generateSubsequence(idx + 1, nums, val , maxi);
+        if(dp[idx][val] != -1)
+            return dp[idx][val];
 
-        return l + r;
+        int l = generateSubsequence(idx + 1, nums, val | nums[idx], maxi, dp);
+        int r = generateSubsequence(idx + 1, nums, val , maxi, dp);
+
+        return dp[idx][val] = l + r;
     }
 
     public int countMaxOrSubsets(int[] nums) {
@@ -57,7 +88,10 @@ class Solution {
         for(int num : nums)
             maxi = maxi | num;
 
-        return generateSubsequence(0, nums, 0, maxi);
+        int[][] dp = new int[nums.length][1000000];
+        for(int[] arr : dp)
+            Arrays.fill(arr, -1);
+        return generateSubsequence(0, nums, 0, maxi, dp);
 
     }
 }
