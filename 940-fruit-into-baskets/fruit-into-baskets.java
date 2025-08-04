@@ -70,7 +70,7 @@ class Solution {
                 i++;
             }
 
-            maxi = Math.max(maxi, currlen);
+            // maxi = Math.max(maxi, currlen);
             j++;
         }
         
