@@ -91,7 +91,7 @@ class Solution {
     }
 
     public double soupServings(int n) {
-        if(n > 5000)
+        if(n > 4500)
             return 1;
         int[][] serves = {{100, 0}, {75, 25}, {50, 50}, {25, 75}};
         double[][] dp = new double[n+1][n+1];
