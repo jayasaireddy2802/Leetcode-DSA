@@ -38,27 +38,70 @@
 //     }
 // }
 
-class Solution{
-    public String sort(int n)
-    {
-        char[] arr = Integer.toString(n).toCharArray();
-        Arrays.sort(arr);
-        return new String(arr);
-    }
-    public boolean reorderedPowerOf2(int n) {
+// class Solution{
+//     public String sort(int n)
+//     {
+//         char[] arr = Integer.toString(n).toCharArray();
+//         Arrays.sort(arr);
+//         return new String(arr);
+//     }
+//     public boolean reorderedPowerOf2(int n) {
         
-        String str = sort(n);
+//         String str = sort(n);
 
-        int num = 0;
-        int i = 0;
-        while(i < 31)
-        {
-            num = (1 << i);
-            if(str.equals(sort(num)))
-                return true;
-            i++;
+//         int num = 0;
+//         int i = 0;
+//         while(i < 31)
+//         {
+//             num = (1 << i);
+//             if(str.equals(sort(num)))
+//                 return true;
+//             i++;
+//         }
+
+//         return false;
+//     }
+// }
+
+
+
+class Solution {
+
+    public boolean powerOfTwo(int n) {
+        return (n & (n - 1)) == 0;
+    }
+
+    public boolean solve(int idx, char[] arr) {
+        int len = arr.length;
+
+        // If we've placed all characters, check the number
+        if (idx == len) {
+            if (arr[0] == '0') return false; // avoid leading zeros
+            int n = Integer.parseInt(new String(arr));
+            return powerOfTwo(n);
         }
 
+        for (int i = idx; i < len; i++) {
+            // swap idx and i
+            char temp = arr[idx];
+            arr[idx] = arr[i];
+            arr[i] = temp;
+
+            if (solve(idx + 1, arr)) {
+                return true;
+            }
+
+            // swap back
+            temp = arr[idx];
+            arr[idx] = arr[i];
+            arr[i] = temp;
+        }
+        
         return false;
+    }
+
+    public boolean reorderedPowerOf2(int n) {
+        char[] arr = Integer.toString(n).toCharArray();
+        return solve(0, arr);
     }
 }
