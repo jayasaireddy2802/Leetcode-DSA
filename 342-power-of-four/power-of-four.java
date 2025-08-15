@@ -15,10 +15,17 @@
 // }
 
 
+// class Solution {
+//     public boolean isPowerOfFour(int n) {
+
+//         double res = Math.log10(n) / Math.log10(4);
+//         return (res == (int)res) ? true : false;
+//     }
+// }
+
+
 class Solution {
     public boolean isPowerOfFour(int n) {
-
-        double res = Math.log10(n) / Math.log10(4);
-        return (res == (int)res) ? true : false;
+        return n > 0 && (n & (n - 1)) == 0 && ((n - 1) % 3 == 0);
     }
 }
