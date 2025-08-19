@@ -55,9 +55,9 @@ class Solution {
         long ct = 0;
         long ans = 0;
 
-        for(int i = 0; i < len; i++)
+        for(int num : nums)
         {
-            if(nums[i] == 0)
+            if(num == 0)
             {
                 ct++;
                 ans += ct;
