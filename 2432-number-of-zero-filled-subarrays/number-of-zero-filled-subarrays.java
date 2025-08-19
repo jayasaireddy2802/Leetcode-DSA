@@ -26,6 +26,29 @@
 // }
 
 
+// class Solution {
+//     public long zeroFilledSubarray(int[] nums) {
+//         int len = nums.length;
+//         long ct = 0;
+//         long ans = 0;
+
+//         for(int i = 0; i < len; i++)
+//         {
+//             if(nums[i] == 0)
+//                 ct++;
+//             else
+//             {
+//                 ans += (ct*(ct+1))/2;
+//                 ct = 0;
+//             }
+//         }
+//         ans += (ct*(ct+1))/2;
+
+//         return ans;
+
+//     }
+// }
+
 class Solution {
     public long zeroFilledSubarray(int[] nums) {
         int len = nums.length;
@@ -35,14 +58,15 @@ class Solution {
         for(int i = 0; i < len; i++)
         {
             if(nums[i] == 0)
+            {
                 ct++;
+                ans += ct;
+            }
             else
             {
-                ans += (ct*(ct+1))/2;
                 ct = 0;
             }
         }
-        ans += (ct*(ct+1))/2;
 
         return ans;
 
