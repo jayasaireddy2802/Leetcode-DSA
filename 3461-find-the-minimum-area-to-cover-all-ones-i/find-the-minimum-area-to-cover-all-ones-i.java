@@ -1,27 +1,32 @@
 class Solution {
 
     public int minimumArea(int[][] grid) {
-        int rows = grid.length;
-        int cols = grid[0].length;
+       
+       int m = grid.length;
+       int n = grid[0].length;
 
-        int top = rows, bottom = -1, left = cols, right = -1;
+       int i_idx_max = -1;
+       int j_idx_max = -1;
+       int i_idx_min = 10000;
+       int j_idx_min = 10000;
 
-        for (int r = 0; r < rows; r++) {
-            for (int c = 0; c < cols; c++) {
-                if (grid[r][c] == 1) {
-                    if (r < top) top = r;
-                    if (r > bottom) bottom = r;
-                    if (c < left) left = c;
-                    if (c > right) right = c;
+       for(int i = 0; i < m; i++)
+       {
+            for(int j = 0; j< n; j++)
+            {
+                if(grid[i][j] == 1)
+                {
+                    i_idx_max = Math.max(i_idx_max, i);
+                    j_idx_max = Math.max(j_idx_max, j);
+                    i_idx_min= Math.min(i_idx_min, i);
+                    j_idx_min = Math.min(j_idx_min, j);
                 }
             }
-        }
+       }
 
-        // If no '1' found, area = 0
-        if (bottom == -1) return 0;
-
-        int height = bottom - top + 1;
-        int width = right - left + 1;
-        return height * width;
+        if(i_idx_max == -1 || j_idx_max == -1 || i_idx_min == 10000 || j_idx_max == 10000)
+            return 0;
+       
+            return (i_idx_max - i_idx_min + 1) * (j_idx_max - j_idx_min + 1);
     }
 }
