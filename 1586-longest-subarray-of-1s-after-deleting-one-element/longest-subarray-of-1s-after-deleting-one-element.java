@@ -91,33 +91,60 @@
 // }
 
 
+// class Solution {
+//     public int longestSubarray(int[] nums) {
+//         List<Integer> list = new ArrayList<>();
+
+//         int ct = 0;
+
+//         for(int num : nums)
+//         {
+//             if(num == 1)
+//                 ct++;
+//             else
+//             {
+//                 list.add(ct);
+//                 ct = 0;
+//             }
+//         }
+//         list.add(ct);
+//         int len = list.size();
+//         if(len == 1)
+//             return nums.length - 1;
+
+//         int ans = 0;
+//         for(int i = 1; i < len; i++)
+//         {
+//             ans = Math.max(ans, list.get(i) + list.get(i - 1));
+//         }
+
+//         return ans;
+//     }
+// }
+
 class Solution {
     public int longestSubarray(int[] nums) {
-        List<Integer> list = new ArrayList<>();
-
-        int ct = 0;
-
-        for(int num : nums)
-        {
-            if(num == 1)
-                ct++;
-            else
-            {
-                list.add(ct);
-                ct = 0;
-            }
-        }
-        list.add(ct);
-        int len = list.size();
-        if(len == 1)
-            return nums.length - 1;
-
+        int len = nums.length;
         int ans = 0;
-        for(int i = 1; i < len; i++)
-        {
-            ans = Math.max(ans, list.get(i) + list.get(i - 1));
-        }
+        int oneIndex = -1;
+        int i = 0, j = 0;
 
+        for(j = 0; j < len; j++)
+        {
+            if(nums[j] == 0 && oneIndex != -1)
+            {
+                i = oneIndex + 1;
+                oneIndex = j;
+            }
+            else if(nums[j] == 0 && oneIndex == -1)
+            {
+                oneIndex = j;
+            }
+
+            ans = Math.max(ans, (j - i));
+        }
+        if(ans == len)
+            return --ans;
         return ans;
     }
 }
