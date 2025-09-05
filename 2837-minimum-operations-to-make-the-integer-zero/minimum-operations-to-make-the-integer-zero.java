@@ -29,11 +29,28 @@
 //     }
 // }
 
+// class Solution {
+//     public int makeTheIntegerZero(int num1, int num2) {
+//         int k = 0;
+
+//         while(true)
+//         {
+//             long val = (long)num1 - (long)k*num2;
+//             if(val < 0)
+//                 return -1;
+//             int min_bits = Long.bitCount(val);
+//             if(min_bits <= k && k <= val)
+//                 return k;
+//             k++;
+//         }
+//     }
+// }
+
 class Solution {
     public int makeTheIntegerZero(int num1, int num2) {
         int k = 0;
 
-        while(true)
+        while(k < 37)
         {
             long val = (long)num1 - (long)k*num2;
             if(val < 0)
@@ -43,5 +60,7 @@ class Solution {
                 return k;
             k++;
         }
+
+        return -1;
     }
 }
