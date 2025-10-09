@@ -46,7 +46,7 @@ class Solution {
             long currStartTime = binarySearch(i, skill, mana, prevPotionTime);
 
             for (int j = 0; j < n; j++) {
-                currStartTime = Math.max(currStartTime, prevPotionTime[j]);
+                // currStartTime = Math.max(currStartTime, prevPotionTime[j]);
                 currStartTime += (long) skill[j] * mana[i];
                 prevPotionTime[j] = currStartTime;
             }
