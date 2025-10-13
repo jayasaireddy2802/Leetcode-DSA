@@ -46,21 +46,47 @@
 // }
 
 
+// import java.util.*;
+
+// class Solution {
+//     public List<String> removeAnagrams(String[] words) {
+//         List<String> result = new ArrayList<>();
+//         String prev = "";
+
+//         for (String word : words) {
+//             char[] arr = word.toCharArray();
+//             Arrays.sort(arr);
+//             String sorted = new String(arr);
+
+//             if (!sorted.equals(prev)) {
+//                 result.add(word);
+//                 prev = sorted;
+//             }
+//         }
+
+//         return result;
+//     }
+// }
+
 import java.util.*;
 
 class Solution {
     public List<String> removeAnagrams(String[] words) {
         List<String> result = new ArrayList<>();
-        String prev = "";
+        String prevKey = "";
 
         for (String word : words) {
-            char[] arr = word.toCharArray();
-            Arrays.sort(arr);
-            String sorted = new String(arr);
+            int[] freq = new int[26];
+            for (char c : word.toCharArray()) freq[c - 'a']++;
 
-            if (!sorted.equals(prev)) {
+            // build unique key like "a2b1c0..."
+            StringBuilder sb = new StringBuilder();
+            for (int f : freq) sb.append('#').append(f);
+            String key = sb.toString();
+
+            if (!key.equals(prevKey)) {
                 result.add(word);
-                prev = sorted;
+                prevKey = key;
             }
         }
 
