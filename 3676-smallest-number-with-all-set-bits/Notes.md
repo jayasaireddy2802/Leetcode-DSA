@@ -1,1 +1,1 @@
-<h2>smallest-number-with-all-set-bits Notes</h2><hr>[ Time taken: 28 m 29 s ]
+<h2>smallest-number-with-all-set-bits Notes</h2><hr>[ Time taken: 46 m 38 s ]
