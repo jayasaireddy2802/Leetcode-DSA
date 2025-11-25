@@ -51,7 +51,7 @@ class Solution {
         {
             num = (num * 10 + 1) % k;
             length++;
-            if(num % k == 0)
+            if(num == 0)
                 return length;
         }
 
