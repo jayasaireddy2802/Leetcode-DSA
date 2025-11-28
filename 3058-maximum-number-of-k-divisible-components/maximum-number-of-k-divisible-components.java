@@ -39,8 +39,7 @@ class Solution {
             long addValue = arr[node] % k == 0 ? 0 : arr[node];
 
             if(addValue == 0)
-                comp++;
-                
+                comp++;                
 
             for(int neighbour : adj.get(node))
             {
@@ -52,6 +51,8 @@ class Solution {
                         queue.add(neighbour);
                 }
             }
+
+            indegree[node] = 0;
         }
 
         return comp;
