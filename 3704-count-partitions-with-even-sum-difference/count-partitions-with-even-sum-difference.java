@@ -13,8 +13,11 @@ class Solution {
             leftSum += nums[i];
             rightSum -= nums[i];
 
-            if((leftSum - rightSum) % 2 == 0)
-                ct++;            
+            // if((leftSum - rightSum) % 2 == 0)
+            //     ct++;   
+
+            if((Math.abs(leftSum - rightSum) & 1) == 0)
+                ct++;         
         }
 
         return ct;
