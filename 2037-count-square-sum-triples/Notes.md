@@ -1,1 +1,1 @@
-<h2>count-square-sum-triples Notes</h2><hr>[ Time taken: 3 m 29 s ]
+<h2>count-square-sum-triples Notes</h2><hr>[ Time taken: 34 m 16 s ]
