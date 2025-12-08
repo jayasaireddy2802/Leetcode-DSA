@@ -1,11 +1,25 @@
+// class Solution {
+//     public int countOdds(int low, int high) {
+//         int ct = 0;
+
+//         for(int k = low; k <= high; k++)
+//         {
+//             if(k % 2 == 1)
+//                 ct++;
+//         }
+
+//         return ct;
+//     }
+// }
+
+
 class Solution {
     public int countOdds(int low, int high) {
-        int nums=high-low+1;  //counting total numbers in range
- 
-		if(low%2!=0 && high%2!=0)  
-            return nums/2 + 1;
-        
-        else
-		return nums/2;
+        int ct = 0;
+
+        if(low % 2 == 0 && high % 2 == 0)
+             return (high -low) /2;
+
+        return (high - low)/2 + 1 ;
     }
 }
