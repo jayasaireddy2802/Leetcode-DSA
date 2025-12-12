@@ -53,16 +53,7 @@ class Solution {
                     String[] parts = event.get(2).split("\\s+");
                     for (String str : parts) {
                         int id = Integer.parseInt(str.substring(2));
-                        int currTime = Integer.parseInt(event.get(1));
-
-                        // if (map.containsKey(id)) {
-                        //     int time = map.get(id);
-                        //     if (currTime - time >= 60) {
-                        //         map.remove(id);
-                        //         ans[id]++;
-                        //     }
-                        // } else
-                            ans[id]++;
+                        ans[id]++;
                     }
                 }
             }
