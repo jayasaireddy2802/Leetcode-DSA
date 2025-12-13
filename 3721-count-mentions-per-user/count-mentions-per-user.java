@@ -10,12 +10,13 @@ class Solution {
             int t2 = Integer.parseInt(b.get(1));
 
             if (t1 == t2) {
-                char c1 = a.get(0).charAt(1);
-                char c2 = b.get(0).charAt(1);
+                // char c1 = a.get(0).charAt(1);
+                // char c2 = b.get(0).charAt(1);
 
-                if (c1 > c2) return -1;
-                if (c1 < c2) return 1;
-                return 0;
+                // if (c1 > c2) return -1;
+                // if (c1 < c2) return 1;
+                // return 0;
+                return b.get(0).charAt(1) - a.get(0).charAt(1);
             }
 
             return Integer.compare(t1, t2);
