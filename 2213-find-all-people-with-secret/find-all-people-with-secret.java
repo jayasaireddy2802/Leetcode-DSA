@@ -1,66 +1,88 @@
 class Solution {
-    public List<Integer> findAllPeople(int totalPeople, int[][] meetings, int initialPerson) {
+    public List<Integer> findAllPeople(int n, int[][] meetings, int firstPerson) {
+        int len = meetings.length;
+        TreeMap<Integer, List<int[]>> map = new TreeMap<>();
+        boolean[] know = new boolean[n];
+        List<Integer> ans = new ArrayList<>();
 
-        // Graph: person -> list of (meetingTime, otherPerson)
-        Map<Integer, List<int[]>> adjacencyList = new HashMap<>();
+        know[0] = true;
+        know[firstPerson] = true;
 
-        for (int[] meeting : meetings) {
-            int u = meeting[0];
-            int v = meeting[1];
-            int meetingTime = meeting[2];
+        for(int[] meeting : meetings)
+        {
+            int time = meeting[2];
+            int p1 = meeting[0];
+            int p2 = meeting[1];
 
-            adjacencyList
-                .computeIfAbsent(u, k -> new ArrayList<>())
-                .add(new int[]{meetingTime, v});
-
-            adjacencyList
-                .computeIfAbsent(v, k -> new ArrayList<>())
-                .add(new int[]{meetingTime, u});
+            List<int[]> list = map.get(time);
+            if(list == null)
+                list = new ArrayList<>();
+            list.add(new int[]{p1, p2});
+            map.put(time, list);
         }
 
-        // Min-heap: (timePersonGotSecret, person)
-        PriorityQueue<int[]> minHeap =
-            new PriorityQueue<>((a, b) -> a[0] - b[0]);
 
-        minHeap.offer(new int[]{0, 0});
-        minHeap.offer(new int[]{0, initialPerson});
+        for(int key : map.keySet())
+        {
+            List<int[]> meets = map.get(key);
+            Map<Integer, List<Integer>> adj = new HashMap<>();
+            Queue<Integer> queue = new LinkedList<>();
+            Set<Integer> set = new HashSet<>();
 
-        // Tracks whether a person has already been finalized
-        boolean[] knowsSecret = new boolean[totalPeople];
+            for(int[] meet : meets)
+            {
+                int p1 = meet[0];
+                int p2 = meet[1];
 
-        while (!minHeap.isEmpty()) {
-            int[] current = minHeap.poll();
-            int currentTime = current[0];
-            int currentPerson = current[1];
+                List<Integer> list = adj.get(p1);
+                if(list == null)
+                    list = new ArrayList<>();
+                list.add(p2);
+                adj.put(p1, list);
 
-            if (knowsSecret[currentPerson]) {
-                continue;
-            }
+                list = adj.get(p2);
+                if(list == null)
+                    list = new ArrayList<>();
+                list.add(p1);
+                adj.put(p2, list);
 
-            knowsSecret[currentPerson] = true;
+                if(know[p1] && (!set.contains(p1)))
+                {
+                    queue.add(p1);
+                    set.add(p1);
+                }
 
-            for (int[] neighborInfo :
-                 adjacencyList.getOrDefault(currentPerson, Collections.emptyList())) {
-
-                int neighborTime = neighborInfo[0];
-                int neighborPerson = neighborInfo[1];
-
-                if (!knowsSecret[neighborPerson] &&
-                    neighborTime >= currentTime) {
-
-                    minHeap.offer(new int[]{neighborTime, neighborPerson});
+                if(know[p2] && (!set.contains(p2)))
+                {
+                    queue.add(p2);
+                    set.add(p2);
                 }
             }
-        }
 
-        // Collect all people who know the secret
-        List<Integer> result = new ArrayList<>();
-        for (int person = 0; person < totalPeople; person++) {
-            if (knowsSecret[person]) {
-                result.add(person);
+
+            while(!queue.isEmpty())
+            {
+                int p = queue.poll();
+
+                for(int neighbour : adj.get(p))
+                {
+                    if(know[neighbour] == false)
+                    {
+                        know[neighbour] = true;
+                        queue.add(neighbour);
+                    }
+                }
             }
+
+
         }
 
-        return result;
+        for(int i = 0; i < n; i++)
+        {
+            if(know[i])
+                ans.add(i);
+        }
+
+        return ans;
     }
 }
