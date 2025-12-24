@@ -36,7 +36,7 @@ class Solution {
         for(int val : apple)
             sum += val;
 
-        int i = capacity.length - 1;
+        int i = len - 1;
         while(i >= 0)
         {
             if(sum <= 0)
@@ -45,6 +45,6 @@ class Solution {
             i--;
         }
 
-        return capacity.length - i - 1;
+        return len - i - 1;
     }
 }
