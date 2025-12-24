@@ -39,12 +39,12 @@ class Solution {
         int i = len - 1;
         while(i >= 0)
         {
+            sum -= capacity[i];
             if(sum <= 0)
                 break;
-            sum -= capacity[i];
             i--;
         }
 
-        return len - i - 1;
+        return len - i;
     }
 }
