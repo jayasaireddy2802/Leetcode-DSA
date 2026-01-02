@@ -19,20 +19,35 @@
 // }
 
 
+// class Solution {
+//     public int repeatedNTimes(int[] nums) {
+//         int len = nums.length;
+//         int n = len / 2;
+
+//         Set<Integer> set = new HashSet<>();
+
+//         for(int num : nums)
+//         {
+//             if(set.contains(num))
+//                 return num;
+//             set.add(num);
+//         }    
+
+//         return -1;
+//     }
+// }
+
+
 class Solution {
     public int repeatedNTimes(int[] nums) {
         int len = nums.length;
-        int n = len / 2;
 
-        Set<Integer> set = new HashSet<>();
-
-        for(int num : nums)
+        for(int i = 1; i < len; i++)
         {
-            if(set.contains(num))
-                return num;
-            set.add(num);
-        }    
+            if(nums[i] == nums[i-1] ||(i - 2 >= 0 && nums[i] == nums[i-2]))
+                return nums[i];
+        }
 
-        return -1;
+        return nums[0];        
     }
 }
