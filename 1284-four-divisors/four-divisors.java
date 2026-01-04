@@ -92,7 +92,7 @@ class Solution {
         for(int i = 1; i <= num1; i++)
         {            
             if(ct > 4)
-                break;
+                return 0;
             if(num % i == 0)
             {
                 int j = num / i;
