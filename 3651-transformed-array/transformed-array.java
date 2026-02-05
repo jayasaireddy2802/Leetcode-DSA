@@ -56,11 +56,9 @@ class Solution {
             if(nums[i] < 0)
             {
                 int j = i;
-                while(steps > 0)
-                {
-                    j = (j - 1 + len) % len;
-                    steps--;
-                }
+                steps %= len;
+                    j = (j - steps + len) % len;
+                  
                 result[i] = nums[j];
             }
         }
