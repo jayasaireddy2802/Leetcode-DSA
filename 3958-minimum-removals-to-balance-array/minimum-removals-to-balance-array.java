@@ -1,23 +1,17 @@
 class Solution {
-    public int minRemoval(int[] numbers, int limit) {
-        int length = numbers.length;
-        Arrays.sort(numbers);
+    public int minRemoval(int[] nums, int k) {
+        int len = nums.length;
+        int mini = len;
+        Arrays.sort(nums);
 
-        int left = 0;
-        int longestValidWindow = 1;
-
-        for (int right = 0; right < length; right++) {
-            long currentMax = numbers[right];
-            long currentMin = numbers[left];
-
-            while (left < right && currentMax > (long) limit * currentMin) {
-                left++;
-                currentMin = numbers[left];
-            }
-
-            longestValidWindow = Math.max(longestValidWindow, right - left + 1);
+        int j = 0;
+        for(int i = 0; i < len; i++)
+        {
+            while(j < len && (long)nums[j] <= (long)nums[i] * k)
+                j++;
+            mini = Math.min(mini, len - (j - i));
         }
 
-        return length - longestValidWindow;
+        return mini;
     }
 }
