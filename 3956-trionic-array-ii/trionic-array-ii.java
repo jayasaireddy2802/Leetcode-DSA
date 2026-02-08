@@ -1,69 +1,130 @@
+// class Solution {
+//     int maxSum = Integer.MIN_VALUE;
+
+//     public long solve(int idx, int[] nums, int trend) {
+//         int len = nums.length;
+
+//         if (idx >= len) {
+//             return Long.MIN_VALUE / 2;
+//         }
+
+//         long skip = Long.MIN_VALUE / 2;
+//         long take = Long.MIN_VALUE / 2;
+
+//         if(trend == 0)
+//         {
+//             skip = solve(idx + 1, nums, trend);
+//         }
+
+//         if(trend == 3)
+//         {
+//             take = nums[idx];
+//         }
+
+//         if (idx + 1 < len) {
+//             int curr = nums[idx];
+//             int next = nums[idx + 1];
+
+//             if (trend == 0 && next > curr)
+//                 take = Math.max(take, curr + solve(idx + 1, nums, trend + 1));
+
+//             else if (trend == 1) {
+//                 if (next > curr)
+//                     take = Math.max(take, curr + solve(idx + 1, nums, trend));
+//                 if (next < curr)
+//                     take = Math.max(take, curr + solve(idx + 1, nums, trend + 1));
+//             }
+
+//             else if (trend == 2) {
+//                 if (next < curr)
+//                     take = Math.max(take, curr + solve(idx + 1, nums, trend));
+//                 if (next > curr)
+//                     take = Math.max(take, curr + solve(idx + 1, nums, trend + 1));
+//             }
+
+//             else if (trend == 3) {
+//                 if (next > curr) {
+//                     take = Math.max(take, curr + solve(idx + 1, nums, trend));
+//                 }
+//             }
+
+
+//         }
+//             return Math.max(skip, take);
+
+//     }
+
+//     public long maxSumTrionic(int[] nums) {
+//         return solve(0, nums, 0);
+    
+//     }
+// }
+
 class Solution {
+    int maxSum = Integer.MIN_VALUE;
 
-    int length;
-    long[][] dp;
-    static final long NEGATIVE_INFINITY = Long.MIN_VALUE / 2;
+    public long solve(int idx, int[] nums, int trend, long[][] dp) {
+        int len = nums.length;
 
-    long solve(int index, int state, int[] nums) {
-        if (index == length) {
-            return (state == 3) ? 0 : NEGATIVE_INFINITY;
+        if (idx >= len) {
+            return Long.MIN_VALUE / 2;
         }
 
-        if (dp[index][state] != Long.MIN_VALUE) {
-            return dp[index][state];
+        if(dp[idx][trend] != Long.MIN_VALUE)
+            return dp[idx][trend];
+
+        long skip = Long.MIN_VALUE / 2;
+        long take = Long.MIN_VALUE / 2;
+
+        if(trend == 0)
+        {
+            skip = solve(idx + 1, nums, trend, dp);
         }
 
-        long pickSum = NEGATIVE_INFINITY;
-        long skipSum = NEGATIVE_INFINITY;
-
-        // Skip (only before sequence starts)
-        if (state == 0) {
-            skipSum = solve(index + 1, 0, nums);
+        if(trend == 3)
+        {
+            take = nums[idx];
         }
 
-        // If trionic pattern already completed, we can end here
-        if (state == 3) {
-            pickSum = nums[index];
-        }
+        if (idx + 1 < len) {
+            int curr = nums[idx];
+            int next = nums[idx + 1];
 
-        if (index + 1 < length) {
-            int current = nums[index];
-            int nextVal = nums[index + 1];
+            if (trend == 0 && next > curr)
+                take = Math.max(take, curr + solve(idx + 1, nums, trend + 1, dp));
 
-            if (state == 0 && nextVal > current) {
-                pickSum = Math.max(pickSum, current + solve(index + 1, 1, nums));
+            else if (trend == 1) {
+                if (next > curr)
+                    take = Math.max(take, curr + solve(idx + 1, nums, trend, dp));
+                if (next < curr)
+                    take = Math.max(take, curr + solve(idx + 1, nums, trend + 1, dp));
             }
-            else if (state == 1) {
-                if (nextVal > current) {
-                    pickSum = Math.max(pickSum, current + solve(index + 1, 1, nums));
-                } else if (nextVal < current) {
-                    pickSum = Math.max(pickSum, current + solve(index + 1, 2, nums));
+
+            else if (trend == 2) {
+                if (next < curr)
+                    take = Math.max(take, curr + solve(idx + 1, nums, trend, dp));
+                if (next > curr)
+                    take = Math.max(take, curr + solve(idx + 1, nums, trend + 1, dp));
+            }
+
+            else if (trend == 3) {
+                if (next > curr) {
+                    take = Math.max(take, curr + solve(idx + 1, nums, trend, dp));
                 }
             }
-            else if (state == 2) {
-                if (nextVal < current) {
-                    pickSum = Math.max(pickSum, current + solve(index + 1, 2, nums));
-                } else if (nextVal > current) {
-                    pickSum = Math.max(pickSum, current + solve(index + 1, 3, nums));
-                }
-            }
-            else if (state == 3 && nextVal > current) {
-                pickSum = Math.max(pickSum, current + solve(index + 1, 3, nums));
-            }
-        }
 
-        return dp[index][state] = Math.max(pickSum, skipSum);
+
+        }
+            return dp[idx][trend] = Math.max(skip, take);
+
     }
 
     public long maxSumTrionic(int[] nums) {
-        length = nums.length;
-        dp = new long[length][4];
+        long[][] dp = new long[nums.length][4];
 
-        // Initialize dp with "uncomputed"
-        for (int i = 0; i < length; i++) {
-            Arrays.fill(dp[i], Long.MIN_VALUE);
-        }
-
-        return solve(0, 0, nums);
+        for(long[] arr : dp)
+            Arrays.fill(arr, Long.MIN_VALUE);
+        return solve(0, nums, 0, dp);
+    
     }
 }
