@@ -2,30 +2,27 @@ class Solution {
     public int minOperations(int[][] grid, int x) {
         int m = grid.length;
         int n = grid[0].length;
-        int len = m*n;
+        int[] arr = new int[m*n];
         int i = 0;
-        int[] nums = new int[m*n];
-        for(int[] arr : grid)
+
+        for(int[] arr1 : grid)
         {
-            for(int num : arr)
-            {
-                nums[i] = num;
-                i++;
-            }
+            for(int num : arr1)
+                arr[i++] = num; 
         }
 
-        Arrays.sort(nums);
+        Arrays.sort(arr);
 
-        int mid = len / 2;
-        int target = nums[mid];
-        int result = 0;
-        for(i = 0; i < len; i++)
+        int mid = (m*n)/2;
+        int res =0;
+        int target = arr[mid];
+
+        for(int num : arr)
         {
-            if(target%x != nums[i]%x)
-                return -1;
-            result = result + Math.abs(target - nums[i])/x;
+            if(num % x != target % x) return -1;
+            res += Math.abs(num - target) / x;
         }
 
-        return result;
+        return res;
     }
 }
