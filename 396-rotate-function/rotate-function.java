@@ -13,7 +13,7 @@ class Solution {
 
         maxSum = f_sum;
 
-        for(int k = 0; k < len; k++)
+        for(int k = 0; k < len - 1; k++)
         {
             int val = f_sum + sum - len * nums[len - 1 - k];
             maxSum = Math.max(maxSum, val);
