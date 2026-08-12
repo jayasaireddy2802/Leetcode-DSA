@@ -11,8 +11,8 @@ class Solution {
             while(map.getOrDefault(nums[j], 0) > k)
             {
                 int val = map.getOrDefault(nums[i], -1);
-                if(val == -1)
-                    break;
+                // if(val == -1)
+                //     break;
                 map.put(nums[i], val - 1);
                 i++;
             }
